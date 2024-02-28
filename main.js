@@ -1,3 +1,5 @@
+import { exibeTab } from './tabuleiro.js';
+
 function menuInicial(){
 
     let opcao = 0;
@@ -13,7 +15,7 @@ function menuInicial(){
         switch (opcao){
             case 1:
                 console.log("Iniciar jogo");
-                jogo(); // Chama a função jogo
+                iniciaTab(); // Chama a função jogo
                 break;
             case 2:
 
@@ -28,21 +30,39 @@ function menuInicial(){
 
 }
 
-function jogo(){
+function iniciaTab(){
+
+    let estadoDeJogo = 1; // 1 - jogo em andamento, 0 - jogo finalizado
+    
     let tabuleiro = new Array(10);
     for (let i = 0; i < 10; i++){
         tabuleiro[i] = new Array(10);
         tabuleiro[i].fill('A');
     }
 
-    for (let i = 0; i < tabuleiro.length; i++) {
-        console.log('| ' + tabuleiro[i].join(' | ') + ' |'); // join = separa os elementos do array por um caracter
-        console.log('-----------------------------------------'); // linha separadora
-    }
    
-    
 
-   // console.log(tabuleiro);
+    // mascara tem q ser igual o tabuleiro 
+    let mascara = new Array(10);
+    for (let i =0; i < 10; i++){
+        mascara[i] = new Array(10);
+        mascara[i].fill('*');
+    }
+
+    
+    exibeTab(tabuleiro, mascara);
+   
+    console.log("Digite uma linha");
+    const prompt = require("prompt-sync")(); // lendo linha
+    let linha = parseInt(prompt());
+    console.log("Digite uma coluna");
+    const prompt2 = require("prompt-sync")(); // lendo coluna
+    let coluna = parseInt(prompt2());
+   
 }
+
+
+
+
 
 menuInicial(); // Chama a função menuInicial
