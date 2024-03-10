@@ -1,4 +1,4 @@
-import { exibeTab } from './tabuleiro.js';
+const { exibeTab } = require('./tabuleiro.js');
 
 function menuInicial(){
 
@@ -50,15 +50,52 @@ function iniciaTab(){
     }
 
     
-    exibeTab(tabuleiro, mascara);
    
-    console.log("Digite uma linha");
-    const prompt = require("prompt-sync")(); // lendo linha
-    let linha = parseInt(prompt());
-    console.log("Digite uma coluna");
-    const prompt2 = require("prompt-sync")(); // lendo coluna
-    let coluna = parseInt(prompt2());
-   
+    while (estadoDeJogo  == 1){
+        
+        
+        exibeTab(tabuleiro, mascara); // Chama a função exibeTab
+
+        //console.clear(); // limpa tela
+
+        posicionaBarco(tabuleiro);
+
+        console.log("Digite uma linha");
+        const prompt = require("prompt-sync")(); // lendo linha
+        let linha = parseInt(prompt());
+        console.log("Digite uma coluna");
+        const prompt2 = require("prompt-sync")(); // lendo coluna
+        let coluna = parseInt(prompt2());
+        
+
+        if (isNaN(coluna) || isNaN(linha)){
+            console.log("Digite um número válido!!\n");
+            continue;
+        }
+
+        if (linha < 0 || linha > 9 || coluna < 0 || coluna > 9){
+            console.log("Digite um número entre 1 e 10");
+            continue;
+        }
+
+        coluna = coluna - 1;
+        linha = linha - 1;
+        mascara[linha][coluna] = tabuleiro[linha][coluna];
+
+    }
+    
+}
+
+function posicionaBarco(tabuleiro){
+    
+    for (let i = 0; i < 6; i++){
+        let linha = Math.floor(Math.random() * 10);
+        console.log(linha);
+        let coluna = Math.floor(Math.random() * 10);
+        tabuleiro[linha][coluna] = 'B'; // colocando os barcos no tabuleiro
+    }
+
+    
 }
 
 
