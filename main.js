@@ -49,6 +49,7 @@ function iniciaTab(){
         mascara[i].fill('*');
     }
 
+    posicionaBarco(tabuleiro); // Chama a função posicionaBarco
     
    
     while (estadoDeJogo  == 1){
@@ -58,7 +59,6 @@ function iniciaTab(){
 
         //console.clear(); // limpa tela
 
-        posicionaBarco(tabuleiro);
 
         console.log("Digite uma linha");
         const prompt = require("prompt-sync")(); // lendo linha
@@ -73,7 +73,7 @@ function iniciaTab(){
             continue;
         }
 
-        if (linha < 0 || linha > 9 || coluna < 0 || coluna > 9){
+        if (linha <= 0 || linha > 10 || coluna <= 0 || coluna > 10){
             console.log("Digite um número entre 1 e 10");
             continue;
         }
@@ -90,8 +90,12 @@ function posicionaBarco(tabuleiro){
     
     for (let i = 0; i < 6; i++){
         let linha = Math.floor(Math.random() * 10);
-        console.log(linha);
         let coluna = Math.floor(Math.random() * 10);
+
+        if (tabuleiro[linha][coluna] == 'B'){
+            i--; // evita repetição de barcos no msm lugar
+            continue;
+        }
         tabuleiro[linha][coluna] = 'B'; // colocando os barcos no tabuleiro
     }
 
