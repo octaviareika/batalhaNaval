@@ -1,5 +1,6 @@
 const { exibeTab } = require('./tabuleiro.js');
 const { posicionaBarco } = require('./posicionaBarco.js');
+const {verificaPonto} = require('./verificaPonto.js');
 
 function menuInicial(){
 
@@ -61,7 +62,7 @@ function iniciaTab(){
 
         //console.clear(); // limpa tela
 
-        console.log("Pontos: ");
+        console.log(`Pontos: ${pontos}`);
 
         console.log("Digite uma linha");
         const prompt = require("prompt-sync")(); // lendo linha
@@ -81,10 +82,12 @@ function iniciaTab(){
             continue;
         }
 
+
         coluna = coluna - 1;
         linha = linha - 1;
         mascara[linha][coluna] = tabuleiro[linha][coluna];
 
+        pontos = verificaPonto(tabuleiro, linha, coluna, pontos);
     }
     
 }
