@@ -1,4 +1,5 @@
 const { exibeTab } = require('./tabuleiro.js');
+const { posicionaBarco } = require('./posicionaBarco.js');
 
 function menuInicial(){
 
@@ -33,6 +34,7 @@ function menuInicial(){
 function iniciaTab(){
 
     let estadoDeJogo = 1; // 1 - jogo em andamento, 0 - jogo finalizado
+    let pontos = 0;
     
     let tabuleiro = new Array(10);
     for (let i = 0; i < 10; i++){
@@ -59,6 +61,7 @@ function iniciaTab(){
 
         //console.clear(); // limpa tela
 
+        console.log("Pontos: ");
 
         console.log("Digite uma linha");
         const prompt = require("prompt-sync")(); // lendo linha
@@ -85,24 +88,6 @@ function iniciaTab(){
     }
     
 }
-
-function posicionaBarco(tabuleiro){
-    
-    for (let i = 0; i < 6; i++){
-        let linha = Math.floor(Math.random() * 10);
-        let coluna = Math.floor(Math.random() * 10);
-
-        if (tabuleiro[linha][coluna] == 'B'){
-            i--; // evita repetição de barcos no msm lugar
-            continue;
-        }
-        tabuleiro[linha][coluna] = 'B'; // colocando os barcos no tabuleiro
-    }
-
-    
-}
-
-
 
 
 
