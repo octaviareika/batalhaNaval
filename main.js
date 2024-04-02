@@ -57,10 +57,12 @@ function iniciaTab(){
    
     while (estadoDeJogo  == 1){
         
+        ///console.clear();
         
         exibeTab(tabuleiro, mascara); // Chama a função exibeTab
 
         //console.clear(); // limpa tela
+        
 
         console.log(`Pontos: ${pontos}`);
 
@@ -88,6 +90,8 @@ function iniciaTab(){
         mascara[linha][coluna] = tabuleiro[linha][coluna];
 
         pontos = verificaPonto(tabuleiro, linha, coluna, pontos);
+
+        
     }
     
 }
