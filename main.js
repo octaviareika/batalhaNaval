@@ -36,6 +36,8 @@ function iniciaTab(){
 
     let estadoDeJogo = 1; // 1 - jogo em andamento, 0 - jogo finalizado
     let pontos = 0;
+    var tentativas = 0;
+    let outraOpcao = 0;
     
     let tabuleiro = new Array(10);
     for (let i = 0; i < 10; i++){
@@ -55,15 +57,16 @@ function iniciaTab(){
     posicionaBarco(tabuleiro); // Chama a função posicionaBarco
     
    
-    while (estadoDeJogo  == 1){
+    while (estadoDeJogo  == 1 && tentativas < 3){
         
-       //process.stdout.write('\x1Bc'); // clear the console
+        process.stdout.write('\x1Bc'); // clear the console
         
         exibeTab(tabuleiro, mascara); // Chama a função exibeTab
 
         
 
         console.log(`Pontos: ${pontos}`);
+        console.log(`Tentativas: ${tentativas}`);
 
         console.log("Digite uma linha");
         const prompt = require("prompt-sync")(); // lendo linha
@@ -89,11 +92,36 @@ function iniciaTab(){
         pontos = verificaPonto(tabuleiro, linha, coluna, pontos);
         mascara[linha][coluna] = tabuleiro[linha][coluna];
 
-        
+        tentativas++;
+
+        if (pontos == 100){ // pq sao 10 barcos de 10 pontos
+            console.log("Parabéns, você ganhou!!");
+            estadoDeJogo = 0;
+        }
         
         
     }
-    
+
+    console.clear();
+    console.log("Fim de jogo!!");
+    console.log("Pontos: " + pontos);
+    console.log("Tentativas: " + tentativas);
+    console.log();
+
+    console.log("1 - Jogar novamente");
+    console.log("2 - Menu Inicial");
+    console.log("Qualquer outra tecla para sair");
+    const prompt = require("prompt-sync")(); // instancar o prompt-sync
+    outraOpcao = parseInt(prompt());
+    if (outraOpcao == 1){
+        iniciaTab();
+    }
+    else if (outraOpcao == 2){
+        menuInicial();
+    }
+    else{
+        console.log("Obrigado por jogar!!");
+    }
 }
 
 
