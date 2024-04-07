@@ -57,11 +57,10 @@ function iniciaTab(){
    
     while (estadoDeJogo  == 1){
         
-        ///console.clear();
+       //process.stdout.write('\x1Bc'); // clear the console
         
         exibeTab(tabuleiro, mascara); // Chama a função exibeTab
 
-        //console.clear(); // limpa tela
         
 
         console.log(`Pontos: ${pontos}`);
@@ -72,8 +71,8 @@ function iniciaTab(){
         console.log("Digite uma coluna");
         const prompt2 = require("prompt-sync")(); // lendo coluna
         let coluna = parseInt(prompt2());
+        // 
         
-
         if (isNaN(coluna) || isNaN(linha)){
             console.log("Digite um número válido!!\n");
             continue;
@@ -87,10 +86,11 @@ function iniciaTab(){
 
         coluna = coluna - 1;
         linha = linha - 1;
+        pontos = verificaPonto(tabuleiro, linha, coluna, pontos);
         mascara[linha][coluna] = tabuleiro[linha][coluna];
 
-        pontos = verificaPonto(tabuleiro, linha, coluna, pontos);
-
+        
+        
         
     }
     
