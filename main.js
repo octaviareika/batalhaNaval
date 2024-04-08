@@ -57,7 +57,7 @@ function iniciaTab(){
     posicionaBarco(tabuleiro); // Chama a função posicionaBarco
     
    
-    while (estadoDeJogo  == 1 && tentativas < 3){
+    while (estadoDeJogo  == 1 && tentativas < 20){
         
         process.stdout.write('\x1Bc'); // clear the console
         
